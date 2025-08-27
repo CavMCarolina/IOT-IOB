@@ -5,18 +5,18 @@ Construção de uma solução de IoT que abrange todas os conceitos de comunica�
 [Acessar o código do Arduino em C++](codigo.c++)
 
 ## Imagem do circuito físico:
-![alt text](image.png)
-![alt text](image-1.png)
+![alt text](imagens/image.png)
+![alt text](imagens/image-1.png)
 
 ## Fluxo node-red
-![alt text](fluxo.png)
+![alt text](imagens/fluxo.png)
 
 ## Imagem Dashboard
-![alt text](dashboard1.png)
-![alt text](dashboard2.png)
+![alt text](imagens/dashboard1.png)
+![alt text](imagens/dashboard2.png)
 
 ## Broker MQTT
-![alt text](broker.png)
+![alt text](imagens/broker.png)
 
 ## Grupo:
 - Beatriz Silva, 553455;
