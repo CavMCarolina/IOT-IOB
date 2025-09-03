@@ -6,7 +6,7 @@ import serial
 import time
 
 # Configurar a porta serial (ajuste para a porta correta do seu Arduino)
-arduino = serial.Serial('COM8', 9600, timeout=1)
+arduino = serial.Serial('COM5', 9600, timeout=1)
 time.sleep(2)  # Aguarda a inicialização da conexão serial
 
 # Inicializa o MediaPipe Hands
@@ -16,7 +16,8 @@ mp_draw = mp.solutions.drawing_utils
 
 # Abrir um vídeo MP4
 video_path = "video.mp4"  # Substitua pelo caminho do seu vídeo
-cap = cv2.VideoCapture(0)
+# Substituir pela câmera caso TENHA
+cap = cv2.VideoCapture(video_path)
 
 while cap.isOpened():
     ret, frame = cap.read()
@@ -27,10 +28,11 @@ while cap.isOpened():
     # Redimensiona o vídeo para 500x500
     frame = cv2.resize(frame, (500, 500))
 
-    # Converte para RGB
+    # Converte para RGB (câmera pega automaticamente em bgr)
     rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     result = hands.process(rgb_frame)
 
+    # Se o dedo estiver acima do 0.5, mostra um resultado, se estiver abaixo mostra outro
     if result.multi_hand_landmarks:
         for hand_landmarks in result.multi_hand_landmarks:
             mp_draw.draw_landmarks(frame, hand_landmarks, mp_hands.HAND_CONNECTIONS)
@@ -47,7 +49,7 @@ while cap.isOpened():
     cv2.imshow("Video", frame)
 
     # Aguarda um pouco para sincronizar com a taxa de quadros do vídeo
-    if cv2.waitKey(30) & 0xFF == ord('q'):
+    if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
 cap.release()
